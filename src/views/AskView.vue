@@ -1,7 +1,8 @@
 <template>
   <div>
     <p v-for='ask in fetchedAsk' :key="ask.id">
-      <a :href="ask.url" target="_blank">{{ ask.title }}</a>
+      <!-- <a :href="ask.url">{{ ask.title }}</a> -->
+      <router-link :to="ask.url">{{ ask.title }}</router-link>
       <small>{{ask.time_ago}} by {{ask.user}}</small>
     </p>
   </div>
@@ -32,7 +33,7 @@ export default {
   },
   created() {
     this.$store.dispatch('FETCH_ASK')
-  }
+  },
 }
 </script>
 
