@@ -1,7 +1,11 @@
 <template>
   <div>
     <!-- <div v-for='user in users' :key="user.id">{{ user.title }}</div> -->
-    <div v-for='user in $store.state.news' :key="user.id">{{ user.title }}</div>
+    <!-- <div v-for='user in $store.state.news' :key="user.id">{{ user.title }}</div> -->
+    <p v-for='item in $store.state.news' :key="item.id">
+      <a :href="item.url" target="_blank">{{ item.title }}</a>
+      <small>{{item.time_ago}} by {{item.user}}</small>
+    </p>
   </div>
 </template>
 
@@ -18,6 +22,7 @@ export default {
   created() {
     this.$store.dispatch('FETCH_DATAS', 'news')
     
+    // 1.
     // try {
     //   const res = await fetchDatas('news');
     //   this.users = res.data
