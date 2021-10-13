@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="item-list">
-      <li v-for='item in $store.state.lists' :key="item.id" class='post'>
+      <li v-for='item in listItems' :key="item.id" class='post'>
         <!-- 포인트 영역 -->
         <div class='points'>
           {{item.points || 0}}
@@ -9,21 +9,25 @@
         <!-- 기타 정보 영역 -->
         <div>
           <p class="item-title">
-            <router-link :to="item.url" v-if="menu === 'ask'">
-              {{ item.title }}
-            </router-link>
-            <a :href="item.url" target="_blank" v-else>
-              {{ item.title }}
-            </a>
+            <template v-if="item.domain">
+              <a :href="item.url" target="_blank">
+                {{ item.title }}
+              </a>
+            </template>
+            <template v-else>
+              <router-link :to="item.url">
+                {{ item.title }}
+              </router-link>
+            </template>
           </p>
           <small class="link-text">
             {{item.time_ago}} by 
-            <a v-if="menu === 'jobs'" :href="item.url" target="_blank">
-              {{item.domain}}
-            </a>
-            <router-link v-else :to="{path: '/user', query: {id:item.user}}" class='link-text'>
+            <router-link v-if='item.user' :to="{path: '/user', query: {id:item.user}}" class='link-text'>
               {{item.user}}
             </router-link>
+            <a v-else :href="item.url" target="_blank">
+              {{item.domain}}
+            </a>
           </small>
         </div>
       </li>
@@ -45,7 +49,7 @@ export default {
     // this.$store.dispatch('FETCH_DATAS', this.menu)
 
     // 2.
-    const name = this.$route.name;
+    const {name} = this.$route;
     let actionName;
     if (name === 'news') {
       // this.$store.dispatch('FETCH_NEWS');
@@ -58,6 +62,22 @@ export default {
       actionName = 'FETCH_JOBS'
     }
     this.$store.dispatch(actionName)
+  },
+  computed: {
+    listItems() {
+      // 1.
+      // return this.$store.state.lists;
+
+      // 2.
+      const {name} = this.$route;
+      if (name === 'news') {
+        return this.$store.state.news;
+      } else if (name === 'ask') {
+        return this.$store.state.ask;
+      } else {
+        return this.$store.state.jobs;
+      }
+    }
   }
 }
 </script>
