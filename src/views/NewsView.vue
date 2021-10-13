@@ -1,42 +1,67 @@
 <template>
   <div>
-    <!-- <div v-for='user in users' :key="user.id">{{ user.title }}</div> -->
-    <!-- <div v-for='user in $store.state.news' :key="user.id">{{ user.title }}</div> -->
-    <p v-for='item in $store.state.news' :key="item.id">
-      <a :href="item.url" target="_blank">{{ item.title }}</a>
-      <small>
-        {{item.time_ago}} by 
-        <!-- <router-link :to="`/user/${item.user}`">{{item.user}}</router-link> -->
-        <router-link :to="{path: '/user', query: {id:item.user}}">{{item.user}}</router-link>
-        </small>
-    </p>
+    <ul class="news-list">
+      <li v-for='item in $store.state.news' :key="item.id" class='post'>
+        <!-- 포인트 영역 -->
+        <div class='points'>
+          {{item.points}}
+        </div>
+        <!-- 기타 정보 영역 -->
+        <div>
+          <p class="news-title">
+            <a :href="item.url" target="_blank">
+              {{ item.title }}
+            </a>
+          </p>
+          <small class="link-text">
+            <!-- {{item.time_ago}}  -->
+            by 
+            <router-link :to="{path: '/user', query: {id:item.user}}" class='link-text'>
+              {{item.user}}
+            </router-link>
+          </small>
+        </div>
+        <!-- <a :href="item.url" target="_blank">{{ item.title }}</a>
+        <small>
+          {{item.time_ago}} by 
+          <router-link :to="{path: '/user', query: {id:item.user}}">{{item.user}}</router-link>
+        </small> -->
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-// import { fetchDatas } from '../api/index'
-
-
 export default {
-  // data() {
-  //   return {
-  //     users: []
-  //   }
-  // },
   created() {
     this.$store.dispatch('FETCH_DATAS', 'news')
-    
-    // 1.
-    // try {
-    //   const res = await fetchDatas('news');
-    //   this.users = res.data
-    // } catch(e) {
-    //   console.log(e)
-    // }
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+.news-list {
+  margin: 0;
+  padding: 0;
+}
+.post {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+.points {
+  width: 80px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #42b883;
+}
+.news-title {
+  margin: 0;
+}
+.link-text {
+  color: #828282;
+}
 </style>
