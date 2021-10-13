@@ -14,18 +14,12 @@
             </a>
           </p>
           <small class="link-text">
-            <!-- {{item.time_ago}}  -->
-            by 
+            {{item.time_ago}} by 
             <router-link :to="{path: '/user', query: {id:item.user}}" class='link-text'>
               {{item.user}}
             </router-link>
           </small>
         </div>
-        <!-- <a :href="item.url" target="_blank">{{ item.title }}</a>
-        <small>
-          {{item.time_ago}} by 
-          <router-link :to="{path: '/user', query: {id:item.user}}">{{item.user}}</router-link>
-        </small> -->
       </li>
     </ul>
   </div>
