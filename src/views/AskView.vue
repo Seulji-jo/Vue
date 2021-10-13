@@ -1,10 +1,25 @@
 <template>
   <div>
-    <p v-for='ask in fetchedAsk' :key="ask.id">
-      <!-- <a :href="ask.url">{{ ask.title }}</a> -->
-      <router-link :to="ask.url">{{ ask.title }}</router-link>
-      <small>{{ask.time_ago}} by {{ask.user}}</small>
-    </p>
+    <ul class="ask-list">
+      <li v-for='ask in fetchedAsk' :key="ask.id" class='post'>
+        <div class="points">
+          {{ask.points}}
+        </div>
+        <div>
+          <p class="ask-title">
+            <router-link :to="ask.url">
+              {{ ask.title }}
+            </router-link>
+          </p>
+          <small class='link-text'>
+            {{ask.time_ago}} by 
+            <router-link :to="{path: '/user', query: {id:ask.user}}" class='link-text'>
+              {{ask.user}}
+            </router-link>
+          </small>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -13,22 +28,6 @@ import { mapState, mapGetters } from 'vuex';
 
 export default {
   computed: {
-    // 방법1.
-    // ask() {
-    //   return this.$store.state.ask;
-    // }
-
-    // 방법2. mapState (이것도 간편하진 않다)
-    // ...mapState({
-    //   ask: state => state.ask // state에 있는 ask를 ask변수에 할당
-    // })
-
-    // 방법3. mapGetters (getters에서 가져온다)
-    // 방법3-1. 이름 변경하고 싶은 경우
-    // ...mapGetters({
-    //   askItems: 'fetchedAsk' // vuex에서 설정한 속성이 Value(오른쪽)
-    // })
-    // 방법3-2. 이름그대로 쓸 경우
     ...mapGetters(['fetchedAsk'])
   },
   created() {
@@ -37,6 +36,29 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.ask-list {
+  margin: 0;
+  padding: 0;
+}
+.post {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+.points {
+  width: 80px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #42b883;
+}
+.ask-title {
+  margin: 0;
+}
+.link-text {
+  color: #828282;
+}
 </style>
