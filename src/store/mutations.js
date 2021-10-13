@@ -1,6 +1,7 @@
 export default {
-  SET_DATAS(state, {menu, data}) {
-    state[menu] = data;
+  SET_DATAS(state, datas) {
+    // state[menu] = data;
+    state.lists = datas;
   },
   SET_NEWS(state, newsDatas) {
     state.news = newsDatas;

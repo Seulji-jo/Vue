@@ -1,21 +1,27 @@
 <template>
   <div>
-    <ul class="news-list">
-      <li v-for='item in $store.state.news' :key="item.id" class='post'>
+    <ul class="item-list">
+      <li v-for='item in $store.state.lists' :key="item.id" class='post'>
         <!-- 포인트 영역 -->
         <div class='points'>
-          {{item.points}}
+          {{item.points || 0}}
         </div>
         <!-- 기타 정보 영역 -->
         <div>
-          <p class="news-title">
-            <a :href="item.url" target="_blank">
+          <p class="item-title">
+            <router-link :to="item.url" v-if="menu === 'ask'">
+              {{ item.title }}
+            </router-link>
+            <a :href="item.url" target="_blank" v-else>
               {{ item.title }}
             </a>
           </p>
           <small class="link-text">
             {{item.time_ago}} by 
-            <router-link :to="{path: '/user', query: {id:item.user}}" class='link-text'>
+            <a v-if="menu === 'jobs'" :href="item.url" target="_blank">
+              {{item.domain}}
+            </a>
+            <router-link v-else :to="{path: '/user', query: {id:item.user}}" class='link-text'>
               {{item.user}}
             </router-link>
           </small>
@@ -27,14 +33,37 @@
 
 <script>
 export default {
+  data() {
+    return {
+      menu: ''
+    }
+  },
   created() {
-    this.$store.dispatch('FETCH_DATAS', 'news')
+    console.log(this.$route.path);
+    // 1.
+    // this.menu = this.$route.name;
+    // this.$store.dispatch('FETCH_DATAS', this.menu)
+
+    // 2.
+    const name = this.$route.name;
+    let actionName;
+    if (name === 'news') {
+      // this.$store.dispatch('FETCH_NEWS');
+      actionName = 'FETCH_NEWS'
+    } else if (name === 'ask') {
+      // this.$store.dispatch('FETCH_ASK');
+      actionName = 'FETCH_ASK'
+    } else if (name === 'jobs') {
+      // this.$store.dispatch('FETCH_JOBS');
+      actionName = 'FETCH_JOBS'
+    }
+    this.$store.dispatch(actionName)
   }
 }
 </script>
 
 <style scoped>
-.news-list {
+.item-list {
   margin: 0;
   padding: 0;
 }
@@ -52,7 +81,7 @@ export default {
   justify-content: center;
   color: #42b883;
 }
-.news-title {
+.item-title {
   margin: 0;
 }
 .link-text {

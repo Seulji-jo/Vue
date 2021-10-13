@@ -2,12 +2,12 @@ import { fetchDatas, fetchNewsList, fetchAskList, fetchJobsList, fetchUserInfo, 
 export default {
   async FETCH_DATAS({commit}, menu) {
     try {
-      const res = await fetchDatas(menu);
-      const datas = {
-        menu,
-        data: res.data
-      }
-      commit('SET_DATAS', datas)
+      const {data} = await fetchDatas(menu);
+      // const datas = {
+      //   menu,
+      //   data
+      // }
+      commit('SET_DATAS', data)
     } catch(e) {
       console.log(e);
     }
