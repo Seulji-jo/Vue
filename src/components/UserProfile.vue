@@ -5,20 +5,20 @@
           <i class="fas fa-user"></i>
         </div>
         <div class='user-description'>
+          <!-- props 데이터가 틀려서 slot으로 작업
+          - ItemView -> info.user
+          - UserView -> info.id -->
           <slot name='username'>
             <!-- 상위 컴포넌트에서 정의할 영역 -->
           </slot>
-          <!-- <div>
-            username: {{info.id}}
-          </div> -->
-          <!-- <router-link :to="{path: '/user', query:{id: userInfo.id}}">
-            {{userInfo.id}}
-          </router-link> -->
           <div class='time'>
-            <!-- time: {{info.created}} -->
-            <slot name='time'></slot>
+            <slot name='time'>
+              <!-- 상위 컴포넌트에서 정의할 영역 -->
+            </slot>
+            <slot name='karma'>
+              <!-- 상위 컴포넌트에서 정의할 영역 -->
+            </slot>
           </div>
-          <slot name='karma'></slot>
         </div>
       </div>
   </div>
