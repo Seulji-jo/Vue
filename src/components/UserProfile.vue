@@ -5,10 +5,14 @@
           <i class="fas fa-user"></i>
         </div>
         <div class='user-description'>
-          <!-- <router-link :to="{path: '/user', query:{id: fetchedItem.user}}">
-            {{fetchedItem.user}}
-          </router-link>
-          <div class='time'>{{fetchedItem.time_ago}}</div> -->
+          <div>
+            <!-- {{userInfo.id}} -->
+            {{info.id}}
+          </div>
+          <!-- <router-link :to="{path: '/user', query:{id: userInfo.id}}">
+            {{userInfo.id}}
+          </router-link> -->
+          <div class='time'>{{info.created}}</div>
         </div>
       </div>
   </div>
@@ -16,7 +20,14 @@
 
 <script>
 export default {
-
+  props: {
+    info: Object
+  },
+  // computed: {
+  //   userInfo() {
+  //     return this.$store.state.user;
+  //   }
+  // },
 }
 </script>
 

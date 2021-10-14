@@ -1,6 +1,6 @@
 <template>
   <div>
-    <UserProfile></UserProfile>
+    <UserProfile :info='userInfo'></UserProfile>
   </div>
 </template>
 
