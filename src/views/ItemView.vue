@@ -1,8 +1,12 @@
 <template>
   <div>
     <section>
-      <!-- 질문 상세 정보 -->
-      <div class='user-container'>
+      <!-- 사용자 정보 -->
+      <UserProfile :info="fetchedItem">
+        <div slot="username">{{fetchedItem.user}}</div>
+        <template slot="time">{{fetchedItem.time_ago}}</template>
+      </UserProfile>
+      <!-- <div class='user-container'>
         <div>
           <i class="fas fa-user"></i>
         </div>
@@ -12,9 +16,9 @@
           </router-link>
           <div class='time'>{{fetchedItem.time_ago}}</div>
         </div>
-      </div>
-        <h2>{{fetchedItem.title}}</h2>
+      </div> -->
     </section>
+    <section><h2>{{fetchedItem.title}}</h2></section>
     <section>
       <!-- 질문 댓글 -->
       <div v-html="fetchedItem.content"></div>
@@ -23,10 +27,12 @@
 </template>
 
 <script>
+import UserProfile from '../components/UserProfile.vue'
 import {mapGetters} from 'vuex'
 // v-html api 문서 : https://kr.vuejs.org/v2/api/index.html#v-html
 // v-html과 데이터 바인딩 차이점 문서 : https://kr.vuejs.org/v2/guide/syntax.html#%EC%9B%90%EC%8B%9C-HTML
 export default {
+  components: {UserProfile},
   computed: {
     fetchItem() {
       return this.$store.state.item;
