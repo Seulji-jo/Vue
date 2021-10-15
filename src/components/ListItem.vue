@@ -42,27 +42,6 @@ export default {
       menu: ''
     }
   },
-  created() {
-    console.log(this.$route.path);
-    // 1.
-    // this.menu = this.$route.name;
-    // this.$store.dispatch('FETCH_DATAS', this.menu)
-
-    // 2.
-    const {name} = this.$route;
-    let actionName;
-    if (name === 'news') {
-      // this.$store.dispatch('FETCH_NEWS');
-      actionName = 'FETCH_NEWS'
-    } else if (name === 'ask') {
-      // this.$store.dispatch('FETCH_ASK');
-      actionName = 'FETCH_ASK'
-    } else if (name === 'jobs') {
-      // this.$store.dispatch('FETCH_JOBS');
-      actionName = 'FETCH_JOBS'
-    }
-    this.$store.dispatch(actionName)
-  },
   computed: {
     listItems() {
       // 1.
