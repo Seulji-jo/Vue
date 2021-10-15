@@ -45,17 +45,17 @@ export default {
   computed: {
     listItems() {
       // 1.
-      // return this.$store.state.lists;
+      return this.$store.state.lists;
 
       // 2.
-      const {name} = this.$route;
-      if (name === 'news') {
-        return this.$store.state.news;
-      } else if (name === 'ask') {
-        return this.$store.state.ask;
-      } else {
-        return this.$store.state.jobs;
-      }
+      // const {name} = this.$route;
+      // if (name === 'news') {
+      //   return this.$store.state.news;
+      // } else if (name === 'ask') {
+      //   return this.$store.state.ask;
+      // } else {
+      //   return this.$store.state.jobs;
+      // }
     }
   }
 }

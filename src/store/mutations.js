@@ -1,6 +1,6 @@
 export default {
   SET_DATAS(state, datas) {
-    // state[menu] = data;
+    // state[name] = data;
     state.lists = datas;
   },
   SET_NEWS(state, newsDatas) {
