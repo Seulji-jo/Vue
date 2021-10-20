@@ -70,6 +70,16 @@ export const router = new VueRouter({
       name: 'jobs',
       component: JobsView,
       // component: createListView('JobsView')
+      beforeEnter: async(to, from, next) => {
+        bus.$emit('start:spinner');
+        try {
+          await store.dispatch('FETCH_DATAS', to.name);
+          bus.$emit('end:spinner')
+          next();
+        } catch(e) {
+          console.log(e);
+        }
+      }
     },
     {
       // path: '/user/:id',
