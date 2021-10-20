@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <!-- <ul class="jobs-list">
+	<div>
+		<!-- <ul class="jobs-list">
       <li v-for='job in $store.state.jobs' :key="job.id" class="post">
         <div class="points">
           {{job.points || 0}}
@@ -18,16 +18,16 @@
         </div>
       </li>
     </ul> -->
-    <ListItem></ListItem>
-  </div>
+		<ListItem></ListItem>
+	</div>
 </template>
 
 <script>
-import ListItem from '../components/ListItem.vue'
-import ListMixin from '../mixins/ListMixin.js'
+import ListItem from '../components/ListItem.vue';
+import ListMixin from '../mixins/ListMixin.js';
 
 export default {
-  components: {ListItem},
-  mixins: [ListMixin]
-}
+	components: { ListItem },
+	mixins: [ListMixin],
+};
 </script>

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <!-- <ul class="ask-list">
+	<div>
+		<!-- <ul class="ask-list">
       <li v-for='ask in fetchedAsk' :key="ask.id" class='post'>
         <div class="points">
           {{ask.points}}
@@ -20,16 +20,20 @@
         </div>
       </li>
     </ul> -->
-    <ListItem></ListItem>
-  </div>
+		<ListItem></ListItem>
+	</div>
 </template>
 
 <script>
-import ListItem from '../components/ListItem.vue'
-import ListMixin from '../mixins/ListMixin.js'
+import ListItem from '../components/ListItem.vue';
+import ListMixin from '../mixins/ListMixin.js';
+// import bus from '../utils/bus';
 
 export default {
-  components: {ListItem},
-  mixins: [ListMixin]
-}
+	components: { ListItem },
+	mixins: [ListMixin],
+	// mounted() {
+	// 	bus.$emit('end:spinner');
+	// },
+};
 </script>

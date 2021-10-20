@@ -5,7 +5,7 @@ import AskView from '../views/AskView.vue';
 import JobsView from '../views/JobsView.vue';
 import UserView from '../views/UserView.vue';
 import ItemView from '../views/ItemView.vue';
-import createListView from '../views/CreateListView';
+// import createListView from '../views/CreateListView';
 import bus from '../utils/bus';
 import { store } from '../store/index';
 
@@ -29,14 +29,8 @@ export const router = new VueRouter({
 				bus.$emit('start:spinner');
 				store
 					.dispatch('FETCH_DATAS', to.name)
-					.then(() => {
-						console.log('fetched');
-						bus.$emit('end:spinner');
-						next();
-					})
-					.catch(error => {
-						console.log(error);
-					});
+					.then(() => next())
+					.catch(error => console.log(error));
 				// console.log('to', to);
 				// console.log('from', from);
 				// console.log(next);
@@ -60,7 +54,6 @@ export const router = new VueRouter({
 				bus.$emit('start:spinner');
 				try {
 					await store.dispatch('FETCH_DATAS', to.name);
-					bus.$emit('end:spinner');
 					next();
 				} catch (e) {
 					console.log(e);
