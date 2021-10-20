@@ -1,16 +1,25 @@
 import { fetchDatas, fetchNewsList, fetchAskList, fetchJobsList, fetchUserInfo, fetchItemData } from '../api/index'
 export default {
+  // #2
   async FETCH_DATAS({commit}, name) {
     try {
       const {data} = await fetchDatas(name);
-      // const datas = {
-      //   name,
-      //   data
-      // }
       commit('SET_DATAS', data)
     } catch(e) {
       console.log(e);
     }
+
+    // // #3
+    // return fetchDatas(name)
+    // .then(res => {
+    //   // #4
+    //   console.log(4);
+    //   commit('SET_DATAS', res.data)
+    //   return res
+    // })
+    // .catch(error => {
+    //   console.log(error)
+    // })
   },
   async FETCH_NEWS({commit}) {
     try {
