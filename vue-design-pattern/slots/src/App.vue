@@ -1,17 +1,28 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <ul>
+      <!-- <Item>아이템 1</Item>
+      <Item>아이템 2</Item>
+      <Item>아이템 3</Item>
+      <Item>아이템 4</Item>
+      <Item>아이템 5</Item> -->
+      <Item v-for="item in items" :item='item' :key="item"></Item>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Item from './Item.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Item
+  },
+  data() {
+    return {
+      items: ['아이템 1', '아이템 2', '아이템 3', '아이템 4', '아이템 5']
+    }
   }
 }
 </script>
