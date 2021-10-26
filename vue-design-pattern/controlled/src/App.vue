@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <CheckBox :checked='checked'></CheckBox>
+    <CheckBox v-model='checked'></CheckBox>
   </div>
 </template>
 
