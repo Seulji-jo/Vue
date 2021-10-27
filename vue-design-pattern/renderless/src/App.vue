@@ -1,17 +1,16 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <FetchData url="https://jsonplaceholder.typicode.com/users/1"></FetchData>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FetchData from './components/FetchData.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    FetchData
   }
 }
 </script>
