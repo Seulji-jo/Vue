@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- instance 영역 -->
+    <!-- <p>
+      {{message}}
+    </p> -->
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue'
+      },
+      // template: '<p>{{message}}</p>',
+      render(createElement) {
+        // template을 라이브러리 내부적으로 구현해주는게 render함수이다.
+        // template을 렌더함수로 변환해서 화면에 뿌린다.
+          // react는 이렇게 전부다 렌더함수로 구현하고, 별도로 템플릿 표현식을 작성하지 않는다.
+        // return createElement('태그이름', '태그 속성', '하위 태그 내용');
+        return createElement('p', this.message)
+      }
+    })
+  </script>
+</body>
+</html>
