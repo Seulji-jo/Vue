@@ -1,6 +1,18 @@
 <template>
   <div>
-    <FetchData url="https://jsonplaceholder.typicode.com/users/1"></FetchData>
+    <FetchData url="https://jsonplaceholder.typicode.com/users/1">
+      <div slot-scope="{response, loading}">
+        <!-- scopedSlots라는 영역안에서만 response, loading이 접근가능하다 -->
+        <div  v-if="!loading">
+          <!-- {{response}} -->
+          <p>name: {{response.name}}</p>
+          <p>email: {{response.email}}</p>
+        </div>
+        <div v-if="loading">
+          Loading...
+        </div>
+      </div>
+    </FetchData>
   </div>
 </template>
 
